@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Cottonwood bark — deeply furrowed, gray-brown with weathered ridges.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <defs>
+    <!-- Vertical furrows: high frequency in X, very low in Y -->
+    <filter id="furrow" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06 0.004" numOctaves="4" seed="6" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.10
+                             0 0 0 0 0.07
+                             0 0 0 0 0.04
+                             0 0 0 1.0 0"/>
+    </filter>
+    <!-- Roughness all over -->
+    <filter id="rough" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" seed="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.22
+                             0 0 0 0 0.17
+                             0 0 0 0 0.12
+                             0 0 0 0.45 0"/>
+    </filter>
+    <!-- Highlight ridges — silvery weathering -->
+    <filter id="ridge" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08 0.006" numOctaves="3" seed="11" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.78
+                             0 0 0 0 0.72
+                             0 0 0 0 0.62
+                             0 0 0 0.55 0"/>
+    </filter>
+  </defs>
+
+  <!-- warm gray-brown bark base -->
+  <rect width="100%" height="100%" fill="#5b4a38"/>
+  <!-- broad vertical furrows (dark) -->
+  <rect width="100%" height="100%" filter="url(#furrow)"/>
+  <!-- silvery ridge highlights -->
+  <rect width="100%" height="100%" filter="url(#ridge)"/>
+  <!-- fine surface roughness -->
+  <rect width="100%" height="100%" filter="url(#rough)"/>
+</svg>
