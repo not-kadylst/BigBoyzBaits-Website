@@ -59,48 +59,58 @@ img { max-width: 100%; display: block; }
 /* ---------- header ---------- */
 
 .site-header {
+  position: relative;
   background: var(--sand);
-  border-bottom: 2px solid var(--line);
-  padding: 18px 0;
+  border-bottom: 2px solid var(--ink);
 }
-.site-header .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.brand-banner {
+  display: block;
+  line-height: 0;
 }
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: var(--ink);
+.brand-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-.brand-mark {
-  width: 48px; height: 48px;
-  background: var(--water-dark);
-  color: var(--cream);
-  display: grid; place-items: center;
-  font-family: Georgia, serif;
-  font-weight: 700;
-  font-size: 1.4rem;
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-.brand-name {
+.brand-tagline {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  right: 50%;
+  margin: 0;
+  z-index: 2;
   font-family: Georgia, serif;
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  font-style: italic;
+  line-height: 1.15;
+  color: var(--cream);
+  text-shadow:
+    2px 2px 0 rgba(0,0,0,0.85),
+    0 0 12px rgba(0,0,0,0.55);
+  pointer-events: none;
 }
-.brand-tag {
-  display: block;
-  font-family: -apple-system, sans-serif;
-  font-size: 0.75rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.site-nav--overlay {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 2;
+}
+.site-nav.site-nav--overlay a {
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--cream);
+  border: 2px solid var(--cream);
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.8);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+}
+.site-nav.site-nav--overlay a:hover,
+.site-nav.site-nav--overlay a[aria-current="page"] {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--ink);
+  text-shadow: none;
 }
 
 /* ---------- nav ---------- */
@@ -130,17 +140,25 @@ img { max-width: 100%; display: block; }
 
 .hero {
   color: var(--cream);
-  padding: 72px 0 80px;
+  padding: 44px 0 56px;
   text-align: center;
   position: relative;
-  border-bottom: 4px solid var(--ink);
-  /* Dusk-on-the-Platte gradient — dark teal sky over deeper water.
-     Will be replaced with a photo background later. */
+  background-color: #4a4036; /* fallback while image loads */
   background-image:
-    linear-gradient(180deg, #1d2e30 0%, #2f4a4f 55%, #243b3d 100%);
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)),
+    url("../img/hero-bark.jpg");
+  background-size: cover;
+  background-position: center;
+  border-bottom: 2px solid var(--ink);
 }
-.hero h1 { color: var(--cream); font-size: 2.6rem; margin-bottom: 0.3em; text-shadow: 2px 2px 0 rgba(0,0,0,0.35); }
-.hero p { font-size: 1.1rem; max-width: 640px; margin: 0 auto 1.6em; color: var(--cream); }
+.hero h1 { color: var(--cream); font-size: 2.4rem; margin: 14px 0 0.3em; text-shadow: 2px 2px 0 rgba(0,0,0,0.6); }
+.hero p {
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto 1.4em;
+  color: var(--cream);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.8);
+}
 .hero .badge {
   display: inline-block;
   background-color: #5b4a38; /* cottonwood bark fallback */
@@ -359,5 +377,7 @@ form textarea { min-height: 120px; resize: vertical; }
   .hero h1 { font-size: 2rem; }
   .hero { padding: 56px 0 60px; }
   section { padding: 44px 0; }
-  .brand-mark { width: 40px; height: 40px; font-size: 1.2rem; }
+  .site-nav--overlay { bottom: 8px; right: 8px; }
+  .site-nav--overlay a { padding: 4px 9px; font-size: 0.85rem; }
+  .brand-tagline { font-size: 0.95rem; bottom: 12px; left: 12px; right: 55%; }
 }
